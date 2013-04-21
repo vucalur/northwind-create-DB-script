@@ -35,7 +35,7 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE categories (
-    "categoryid" SERIAL NOT NULL,
+    "categoryid" integer NOT NULL,
     "categoryname" character varying(15) NOT NULL,
     "description" text,
     "picture" bytea
@@ -94,7 +94,7 @@ ALTER TABLE public.customers OWNER TO postgres;
 --
 
 CREATE TABLE employees (
-    "employeeid" SERIAL NOT NULL,
+    "employeeid" integer NOT NULL,
     "lastname" character varying(20) NOT NULL,
     "firstname" character varying(10) NOT NULL,
     "title" character varying(30),
@@ -122,7 +122,7 @@ ALTER TABLE public.employees OWNER TO postgres;
 --
 
 CREATE TABLE employeeterritories (
-    "employeeid" SERIAL NOT NULL,
+    "employeeid" integer NOT NULL,
     "territoryid" character varying(20) NOT NULL
 );
 
@@ -134,7 +134,7 @@ ALTER TABLE public.employeeterritories OWNER TO postgres;
 --
 
 CREATE TABLE order_details (
-    "orderid" SERIAL NOT NULL,
+    "orderid" integer NOT NULL,
     "productid" integer NOT NULL,
     "unitprice" real NOT NULL,
     "quantity" integer NOT NULL,
@@ -149,7 +149,7 @@ ALTER TABLE public.order_details OWNER TO postgres;
 --
 
 CREATE TABLE orders (
-    "orderid" SERIAL NOT NULL,
+    "orderid" integer NOT NULL,
     "customerid" bpchar,
     "employeeid" integer,
     "orderdate" date,
@@ -173,7 +173,7 @@ ALTER TABLE public.orders OWNER TO postgres;
 --
 
 CREATE TABLE products (
-    "productid" SERIAL NOT NULL,
+    "productid" integer NOT NULL,
     "productname" character varying(40) NOT NULL,
     "supplierid" integer,
     "categoryid" integer,
@@ -193,7 +193,7 @@ ALTER TABLE public.products OWNER TO postgres;
 --
 
 CREATE TABLE region (
-    "regionid" SERIAL NOT NULL,
+    "regionid" integer NOT NULL,
     "regiondescription" bpchar NOT NULL
 );
 
@@ -205,7 +205,7 @@ ALTER TABLE public.region OWNER TO postgres;
 --
 
 CREATE TABLE shippers (
-    "shipperid" SERIAL NOT NULL,
+    "shipperid" integer NOT NULL,
     "companyname" character varying(40) NOT NULL,
     "phone" character varying(24)
 );
@@ -218,7 +218,7 @@ ALTER TABLE public.shippers OWNER TO postgres;
 --
 
 CREATE TABLE shippers_tmp (
-    "shipperid" SERIAL NOT NULL,
+    "shipperid" integer NOT NULL,
     "companyname" character varying(40) NOT NULL,
     "phone" character varying(24)
 );
@@ -231,7 +231,7 @@ ALTER TABLE public.shippers_tmp OWNER TO postgres;
 --
 
 CREATE TABLE suppliers (
-    "supplierid" SERIAL NOT NULL,
+    "supplierid" integer NOT NULL,
     "companyname" character varying(40) NOT NULL,
     "contactname" character varying(30),
     "contacttitle" character varying(30),
@@ -266,7 +266,7 @@ ALTER TABLE public.territories OWNER TO postgres;
 --
 
 CREATE TABLE usstates (
-    "stateid" SERIAL NOT NULL,
+    "stateid" integer NOT NULL,
     "statename" character varying(100),
     "stateabbr" character varying(2),
     "stateregion" character varying(50)
