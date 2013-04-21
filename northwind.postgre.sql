@@ -35,7 +35,7 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE categories (
-    "categoryid" smallint NOT NULL,
+    "categoryid" SERIAL NOT NULL,
     "categoryname" character varying(15) NOT NULL,
     "description" text,
     "picture" bytea
@@ -94,7 +94,7 @@ ALTER TABLE public.customers OWNER TO postgres;
 --
 
 CREATE TABLE employees (
-    "employeeid" smallint NOT NULL,
+    "employeeid" SERIAL NOT NULL,
     "lastname" character varying(20) NOT NULL,
     "firstname" character varying(10) NOT NULL,
     "title" character varying(30),
@@ -110,7 +110,7 @@ CREATE TABLE employees (
     "extension" character varying(4),
     "photo" bytea,
     "notes" text,
-    "reportsto" smallint,
+    "reportsto" integer,
     "photopath" character varying(255)
 );
 
@@ -122,7 +122,7 @@ ALTER TABLE public.employees OWNER TO postgres;
 --
 
 CREATE TABLE employeeterritories (
-    "employeeid" smallint NOT NULL,
+    "employeeid" SERIAL NOT NULL,
     "territoryid" character varying(20) NOT NULL
 );
 
@@ -134,10 +134,10 @@ ALTER TABLE public.employeeterritories OWNER TO postgres;
 --
 
 CREATE TABLE order_details (
-    "orderid" smallint NOT NULL,
-    "productid" smallint NOT NULL,
+    "orderid" SERIAL NOT NULL,
+    "productid" integer NOT NULL,
     "unitprice" real NOT NULL,
-    "quantity" smallint NOT NULL,
+    "quantity" integer NOT NULL,
     "discount" real NOT NULL
 );
 
@@ -149,13 +149,13 @@ ALTER TABLE public.order_details OWNER TO postgres;
 --
 
 CREATE TABLE orders (
-    "orderid" smallint NOT NULL,
+    "orderid" SERIAL NOT NULL,
     "customerid" bpchar,
-    "employeeid" smallint,
+    "employeeid" integer,
     "orderdate" date,
     "requireddate" date,
     "shippeddate" date,
-    "shipvia" smallint,
+    "shipvia" integer,
     "freight" real,
     "shipname" character varying(40),
     "shipaddress" character varying(60),
@@ -173,16 +173,16 @@ ALTER TABLE public.orders OWNER TO postgres;
 --
 
 CREATE TABLE products (
-    "productid" smallint NOT NULL,
+    "productid" SERIAL NOT NULL,
     "productname" character varying(40) NOT NULL,
-    "supplierid" smallint,
-    "categoryid" smallint,
+    "supplierid" integer,
+    "categoryid" integer,
     "quantityperunit" character varying(20),
     "unitprice" real,
-    "unitsinstock" smallint,
-    "unitsonorder" smallint,
-    "reorderlevel" smallint,
-    "discontinued" smallint NOT NULL
+    "unitsinstock" integer,
+    "unitsonorder" integer,
+    "reorderlevel" integer,
+    "discontinued" integer NOT NULL
 );
 
 
@@ -193,7 +193,7 @@ ALTER TABLE public.products OWNER TO postgres;
 --
 
 CREATE TABLE region (
-    "regionid" smallint NOT NULL,
+    "regionid" SERIAL NOT NULL,
     "regiondescription" bpchar NOT NULL
 );
 
@@ -205,7 +205,7 @@ ALTER TABLE public.region OWNER TO postgres;
 --
 
 CREATE TABLE shippers (
-    "shipperid" smallint NOT NULL,
+    "shipperid" SERIAL NOT NULL,
     "companyname" character varying(40) NOT NULL,
     "phone" character varying(24)
 );
@@ -218,7 +218,7 @@ ALTER TABLE public.shippers OWNER TO postgres;
 --
 
 CREATE TABLE shippers_tmp (
-    "shipperid" smallint NOT NULL,
+    "shipperid" SERIAL NOT NULL,
     "companyname" character varying(40) NOT NULL,
     "phone" character varying(24)
 );
@@ -231,7 +231,7 @@ ALTER TABLE public.shippers_tmp OWNER TO postgres;
 --
 
 CREATE TABLE suppliers (
-    "supplierid" smallint NOT NULL,
+    "supplierid" SERIAL NOT NULL,
     "companyname" character varying(40) NOT NULL,
     "contactname" character varying(30),
     "contacttitle" character varying(30),
@@ -255,7 +255,7 @@ ALTER TABLE public.suppliers OWNER TO postgres;
 CREATE TABLE territories (
     "territoryid" character varying(20) NOT NULL,
     "territorydescription" bpchar NOT NULL,
-    "regionid" smallint NOT NULL
+    "regionid" integer NOT NULL
 );
 
 
@@ -266,7 +266,7 @@ ALTER TABLE public.territories OWNER TO postgres;
 --
 
 CREATE TABLE usstates (
-    "stateid" smallint NOT NULL,
+    "stateid" SERIAL NOT NULL,
     "statename" character varying(100),
     "stateabbr" character varying(2),
     "stateregion" character varying(50)
