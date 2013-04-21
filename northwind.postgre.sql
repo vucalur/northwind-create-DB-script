@@ -35,10 +35,10 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE categories (
-    "CategoryID" integer NOT NULL,
-    "CategoryName" character varying(15) NOT NULL,
-    "Description" text,
-    "Picture" bytea
+    "categoryid" smallint NOT NULL,
+    "categoryname" character varying(15) NOT NULL,
+    "description" text,
+    "picture" bytea
 );
 
 
@@ -49,8 +49,8 @@ ALTER TABLE public.categories OWNER TO postgres;
 --
 
 CREATE TABLE customercustomerdemo (
-    "CustomerID" bpchar NOT NULL,
-    "CustomerTypeID" bpchar NOT NULL
+    "customerid" bpchar NOT NULL,
+    "customertypeid" bpchar NOT NULL
 );
 
 
@@ -61,8 +61,8 @@ ALTER TABLE public.customercustomerdemo OWNER TO postgres;
 --
 
 CREATE TABLE customerdemographics (
-    "CustomerTypeID" bpchar NOT NULL,
-    "CustomerDesc" text
+    "customertypeid" bpchar NOT NULL,
+    "customerdesc" text
 );
 
 
@@ -73,17 +73,17 @@ ALTER TABLE public.customerdemographics OWNER TO postgres;
 --
 
 CREATE TABLE customers (
-    "CustomerID" bpchar NOT NULL,
-    "CompanyName" character varying(40) NOT NULL,
-    "ContactName" character varying(30),
-    "ContactTitle" character varying(30),
-    "Address" character varying(60),
-    "City" character varying(15),
-    "Region" character varying(15),
-    "PostalCode" character varying(10),
-    "Country" character varying(15),
-    "Phone" character varying(24),
-    "Fax" character varying(24)
+    "customerid" bpchar NOT NULL,
+    "companyname" character varying(40) NOT NULL,
+    "contactname" character varying(30),
+    "contacttitle" character varying(30),
+    "address" character varying(60),
+    "city" character varying(15),
+    "region" character varying(15),
+    "postalcode" character varying(10),
+    "country" character varying(15),
+    "phone" character varying(24),
+    "fax" character varying(24)
 );
 
 
@@ -94,24 +94,24 @@ ALTER TABLE public.customers OWNER TO postgres;
 --
 
 CREATE TABLE employees (
-    "EmployeeID" integer NOT NULL,
-    "LastName" character varying(20) NOT NULL,
-    "FirstName" character varying(10) NOT NULL,
-    "Title" character varying(30),
-    "TitleOfCourtesy" character varying(25),
-    "BirthDate" date,
-    "HireDate" date,
-    "Address" character varying(60),
-    "City" character varying(15),
-    "Region" character varying(15),
-    "PostalCode" character varying(10),
-    "Country" character varying(15),
-    "HomePhone" character varying(24),
-    "Extension" character varying(4),
-    "Photo" bytea,
-    "Notes" text,
-    "ReportsTo" integer,
-    "PhotoPath" character varying(255)
+    "employeeid" smallint NOT NULL,
+    "lastname" character varying(20) NOT NULL,
+    "firstname" character varying(10) NOT NULL,
+    "title" character varying(30),
+    "titleofcourtesy" character varying(25),
+    "birthdate" date,
+    "hiredate" date,
+    "address" character varying(60),
+    "city" character varying(15),
+    "region" character varying(15),
+    "postalcode" character varying(10),
+    "country" character varying(15),
+    "homephone" character varying(24),
+    "extension" character varying(4),
+    "photo" bytea,
+    "notes" text,
+    "reportsto" smallint,
+    "photopath" character varying(255)
 );
 
 
@@ -122,8 +122,8 @@ ALTER TABLE public.employees OWNER TO postgres;
 --
 
 CREATE TABLE employeeterritories (
-    "EmployeeID" integer NOT NULL,
-    "TerritoryID" character varying(20) NOT NULL
+    "employeeid" smallint NOT NULL,
+    "territoryid" character varying(20) NOT NULL
 );
 
 
@@ -134,11 +134,11 @@ ALTER TABLE public.employeeterritories OWNER TO postgres;
 --
 
 CREATE TABLE order_details (
-    "OrderID" integer NOT NULL,
-    "ProductID" integer NOT NULL,
-    "UnitPrice" real NOT NULL,
-    "Quantity" integer NOT NULL,
-    "Discount" real NOT NULL
+    "orderid" smallint NOT NULL,
+    "productid" smallint NOT NULL,
+    "unitprice" real NOT NULL,
+    "quantity" smallint NOT NULL,
+    "discount" real NOT NULL
 );
 
 
@@ -149,20 +149,20 @@ ALTER TABLE public.order_details OWNER TO postgres;
 --
 
 CREATE TABLE orders (
-    "OrderID" integer NOT NULL,
-    "CustomerID" bpchar,
-    "EmployeeID" integer,
-    "OrderDate" date,
-    "RequiredDate" date,
-    "ShippedDate" date,
-    "ShipVia" integer,
-    "Freight" real,
-    "ShipName" character varying(40),
-    "ShipAddress" character varying(60),
-    "ShipCity" character varying(15),
-    "ShipRegion" character varying(15),
-    "ShipPostalCode" character varying(10),
-    "ShipCountry" character varying(15)
+    "orderid" smallint NOT NULL,
+    "customerid" bpchar,
+    "employeeid" smallint,
+    "orderdate" date,
+    "requireddate" date,
+    "shippeddate" date,
+    "shipvia" smallint,
+    "freight" real,
+    "shipname" character varying(40),
+    "shipaddress" character varying(60),
+    "shipcity" character varying(15),
+    "shipregion" character varying(15),
+    "shippostalcode" character varying(10),
+    "shipcountry" character varying(15)
 );
 
 
@@ -173,16 +173,16 @@ ALTER TABLE public.orders OWNER TO postgres;
 --
 
 CREATE TABLE products (
-    "ProductID" integer NOT NULL,
-    "ProductName" character varying(40) NOT NULL,
-    "SupplierID" integer,
-    "CategoryID" integer,
-    "QuantityPerUnit" character varying(20),
-    "UnitPrice" real,
-    "UnitsInStock" integer,
-    "UnitsOnOrder" integer,
-    "ReorderLevel" integer,
-    "Discontinued" integer NOT NULL
+    "productid" smallint NOT NULL,
+    "productname" character varying(40) NOT NULL,
+    "supplierid" smallint,
+    "categoryid" smallint,
+    "quantityperunit" character varying(20),
+    "unitprice" real,
+    "unitsinstock" smallint,
+    "unitsonorder" smallint,
+    "reorderlevel" smallint,
+    "discontinued" smallint NOT NULL
 );
 
 
@@ -193,8 +193,8 @@ ALTER TABLE public.products OWNER TO postgres;
 --
 
 CREATE TABLE region (
-    "RegionID" integer NOT NULL,
-    "RegionDescription" bpchar NOT NULL
+    "regionid" smallint NOT NULL,
+    "regiondescription" bpchar NOT NULL
 );
 
 
@@ -205,9 +205,9 @@ ALTER TABLE public.region OWNER TO postgres;
 --
 
 CREATE TABLE shippers (
-    "ShipperID" integer NOT NULL,
-    "CompanyName" character varying(40) NOT NULL,
-    "Phone" character varying(24)
+    "shipperid" smallint NOT NULL,
+    "companyname" character varying(40) NOT NULL,
+    "phone" character varying(24)
 );
 
 
@@ -218,9 +218,9 @@ ALTER TABLE public.shippers OWNER TO postgres;
 --
 
 CREATE TABLE shippers_tmp (
-    "ShipperID" integer NOT NULL,
-    "CompanyName" character varying(40) NOT NULL,
-    "Phone" character varying(24)
+    "shipperid" smallint NOT NULL,
+    "companyname" character varying(40) NOT NULL,
+    "phone" character varying(24)
 );
 
 
@@ -231,18 +231,18 @@ ALTER TABLE public.shippers_tmp OWNER TO postgres;
 --
 
 CREATE TABLE suppliers (
-    "SupplierID" integer NOT NULL,
-    "CompanyName" character varying(40) NOT NULL,
-    "ContactName" character varying(30),
-    "ContactTitle" character varying(30),
-    "Address" character varying(60),
-    "City" character varying(15),
-    "Region" character varying(15),
-    "PostalCode" character varying(10),
-    "Country" character varying(15),
-    "Phone" character varying(24),
-    "Fax" character varying(24),
-    "HomePage" text
+    "supplierid" smallint NOT NULL,
+    "companyname" character varying(40) NOT NULL,
+    "contactname" character varying(30),
+    "contacttitle" character varying(30),
+    "address" character varying(60),
+    "city" character varying(15),
+    "region" character varying(15),
+    "postalcode" character varying(10),
+    "country" character varying(15),
+    "phone" character varying(24),
+    "fax" character varying(24),
+    "homepage" text
 );
 
 
@@ -253,9 +253,9 @@ ALTER TABLE public.suppliers OWNER TO postgres;
 --
 
 CREATE TABLE territories (
-    "TerritoryID" character varying(20) NOT NULL,
-    "TerritoryDescription" bpchar NOT NULL,
-    "RegionID" integer NOT NULL
+    "territoryid" character varying(20) NOT NULL,
+    "territorydescription" bpchar NOT NULL,
+    "regionid" smallint NOT NULL
 );
 
 
@@ -266,10 +266,10 @@ ALTER TABLE public.territories OWNER TO postgres;
 --
 
 CREATE TABLE usstates (
-    "StateID" integer NOT NULL,
-    "StateName" character varying(100),
-    "StateAbbr" character varying(2),
-    "StateRegion" character varying(50)
+    "stateid" smallint NOT NULL,
+    "statename" character varying(100),
+    "stateabbr" character varying(2),
+    "stateregion" character varying(50)
 );
 
 
@@ -340,7 +340,7 @@ INSERT INTO customers VALUES ('GREAL', 'Great Lakes Food Market', 'Howard Snyder
 INSERT INTO customers VALUES ('GROSR', 'GROSELLA-Restaurante', 'Manuel Pereira', 'Owner', '5ª Ave. Los Palos Grandes', 'Caracas', 'DF', '1081', 'Venezuela', '(2) 283-2951', '(2) 283-3397');
 INSERT INTO customers VALUES ('HANAR', 'Hanari Carnes', 'Mario Pontes', 'Accounting Manager', 'Rua do Paço, 67', 'Rio de Janeiro', 'RJ', '05454-876', 'Brazil', '(21) 555-0091', '(21) 555-8765');
 INSERT INTO customers VALUES ('HILAA', 'HILARION-Abastos', 'Carlos Hernández', 'Sales Representative', 'Carrera 22 con Ave. Carlos Soublette #8-35', 'San Cristóbal', 'Táchira', '5022', 'Venezuela', '(5) 555-1340', '(5) 555-1948');
-INSERT INTO customers VALUES ('HUNGC', 'Hungry Coyote Import Store', 'Yoshi Latimer', 'Sales Representative', 'City Center Plaza 516 Main St.', 'Elgin', 'OR', '97827', 'USA', '(503) 555-6874', '(503) 555-2376');
+INSERT INTO customers VALUES ('HUNGC', 'Hungry Coyote Import Store', 'Yoshi Latimer', 'Sales Representative', 'city Center Plaza 516 Main St.', 'Elgin', 'OR', '97827', 'USA', '(503) 555-6874', '(503) 555-2376');
 INSERT INTO customers VALUES ('HUNGO', 'Hungry Owl All-Night Grocers', 'Patricia McKenna', 'Sales Associate', '8 Johnstown Road', 'Cork', 'Co. Cork', NULL, 'Ireland', '2967 542', '2967 3333');
 INSERT INTO customers VALUES ('ISLAT', 'Island Trading', 'Helen Bennett', 'Marketing Manager', 'Garden House Crowther Way', 'Cowes', 'Isle of Wight', 'PO31 7PJ', 'UK', '(198) 555-8888', NULL);
 INSERT INTO customers VALUES ('KOENE', 'Königlich Essen', 'Philip Cramer', 'Sales Associate', 'Maubelstr. 90', 'Brandenburg', NULL, '14776', 'Germany', '0555-09876', NULL);
@@ -2760,7 +2760,7 @@ INSERT INTO orders VALUES (10371, 'LAMAI', 1, '1996-12-03', '1996-12-31', '1996-
 INSERT INTO orders VALUES (10372, 'QUEEN', 5, '1996-12-04', '1997-01-01', '1996-12-09', 2, 890.780029, 'Queen Cozinha', 'Alameda dos Canàrios, 891', 'Sao Paulo', 'SP', '05487-020', 'Brazil');
 INSERT INTO orders VALUES (10373, 'HUNGO', 4, '1996-12-05', '1997-01-02', '1996-12-11', 3, 124.120003, 'Hungry Owl All-Night Grocers', '8 Johnstown Road', 'Cork', 'Co. Cork', NULL, 'Ireland');
 INSERT INTO orders VALUES (10374, 'WOLZA', 1, '1996-12-05', '1997-01-02', '1996-12-09', 3, 3.94000006, 'Wolski Zajazd', 'ul. Filtrowa 68', 'Warszawa', NULL, '01-012', 'Poland');
-INSERT INTO orders VALUES (10375, 'HUNGC', 3, '1996-12-06', '1997-01-03', '1996-12-09', 2, 20.1200008, 'Hungry Coyote Import Store', 'City Center Plaza 516 Main St.', 'Elgin', 'OR', '97827', 'USA');
+INSERT INTO orders VALUES (10375, 'HUNGC', 3, '1996-12-06', '1997-01-03', '1996-12-09', 2, 20.1200008, 'Hungry Coyote Import Store', 'city Center Plaza 516 Main St.', 'Elgin', 'OR', '97827', 'USA');
 INSERT INTO orders VALUES (10376, 'MEREP', 1, '1996-12-09', '1997-01-06', '1996-12-13', 2, 20.3899994, 'Mère Paillarde', '43 rue St. Laurent', 'Montréal', 'Québec', 'H1J 1C3', 'Canada');
 INSERT INTO orders VALUES (10377, 'SEVES', 1, '1996-12-09', '1997-01-06', '1996-12-13', 3, 22.2099991, 'Seven Seas Imports', '90 Wadhurst Rd.', 'London', NULL, 'OX15 4NB', 'UK');
 INSERT INTO orders VALUES (10378, 'FOLKO', 5, '1996-12-10', '1997-01-07', '1996-12-19', 3, 5.44000006, 'Folk och fä HB', 'Åkergatan 24', 'Bräcke', NULL, 'S-844 67', 'Sweden');
@@ -2779,7 +2779,7 @@ INSERT INTO orders VALUES (10390, 'ERNSH', 6, '1996-12-23', '1997-01-20', '1996-
 INSERT INTO orders VALUES (10391, 'DRACD', 3, '1996-12-23', '1997-01-20', '1996-12-31', 3, 5.44999981, 'Drachenblut Delikatessen', 'Walserweg 21', 'Aachen', NULL, '52066', 'Germany');
 INSERT INTO orders VALUES (10392, 'PICCO', 2, '1996-12-24', '1997-01-21', '1997-01-01', 3, 122.459999, 'Piccolo und mehr', 'Geislweg 14', 'Salzburg', NULL, '5020', 'Austria');
 INSERT INTO orders VALUES (10393, 'SAVEA', 1, '1996-12-25', '1997-01-22', '1997-01-03', 3, 126.559998, 'Save-a-lot Markets', '187 Suffolk Ln.', 'Boise', 'ID', '83720', 'USA');
-INSERT INTO orders VALUES (10394, 'HUNGC', 1, '1996-12-25', '1997-01-22', '1997-01-03', 3, 30.3400002, 'Hungry Coyote Import Store', 'City Center Plaza 516 Main St.', 'Elgin', 'OR', '97827', 'USA');
+INSERT INTO orders VALUES (10394, 'HUNGC', 1, '1996-12-25', '1997-01-22', '1997-01-03', 3, 30.3400002, 'Hungry Coyote Import Store', 'city Center Plaza 516 Main St.', 'Elgin', 'OR', '97827', 'USA');
 INSERT INTO orders VALUES (10395, 'HILAA', 6, '1996-12-26', '1997-01-23', '1997-01-03', 1, 184.410004, 'HILARION-Abastos', 'Carrera 22 con Ave. Carlos Soublette #8-35', 'San Cristóbal', 'Táchira', '5022', 'Venezuela');
 INSERT INTO orders VALUES (10396, 'FRANK', 1, '1996-12-27', '1997-01-10', '1997-01-06', 3, 135.350006, 'Frankenversand', 'Berliner Platz 43', 'München', NULL, '80805', 'Germany');
 INSERT INTO orders VALUES (10397, 'PRINI', 5, '1996-12-27', '1997-01-24', '1997-01-02', 1, 60.2599983, 'Princesa Isabel Vinhos', 'Estrada da saúde n. 58', 'Lisboa', NULL, '1756', 'Portugal');
@@ -2800,7 +2800,7 @@ INSERT INTO orders VALUES (10411, 'BOTTM', 9, '1997-01-10', '1997-02-07', '1997-
 INSERT INTO orders VALUES (10412, 'WARTH', 8, '1997-01-13', '1997-02-10', '1997-01-15', 2, 3.76999998, 'Wartian Herkku', 'Torikatu 38', 'Oulu', NULL, '90110', 'Finland');
 INSERT INTO orders VALUES (10413, 'LAMAI', 3, '1997-01-14', '1997-02-11', '1997-01-16', 2, 95.6600037, 'La maison d''Asie', '1 rue Alsace-Lorraine', 'Toulouse', NULL, '31000', 'France');
 INSERT INTO orders VALUES (10414, 'FAMIA', 2, '1997-01-14', '1997-02-11', '1997-01-17', 3, 21.4799995, 'Familia Arquibaldo', 'Rua Orós, 92', 'Sao Paulo', 'SP', '05442-030', 'Brazil');
-INSERT INTO orders VALUES (10415, 'HUNGC', 3, '1997-01-15', '1997-02-12', '1997-01-24', 1, 0.200000003, 'Hungry Coyote Import Store', 'City Center Plaza 516 Main St.', 'Elgin', 'OR', '97827', 'USA');
+INSERT INTO orders VALUES (10415, 'HUNGC', 3, '1997-01-15', '1997-02-12', '1997-01-24', 1, 0.200000003, 'Hungry Coyote Import Store', 'city Center Plaza 516 Main St.', 'Elgin', 'OR', '97827', 'USA');
 INSERT INTO orders VALUES (10416, 'WARTH', 8, '1997-01-16', '1997-02-13', '1997-01-27', 3, 22.7199993, 'Wartian Herkku', 'Torikatu 38', 'Oulu', NULL, '90110', 'Finland');
 INSERT INTO orders VALUES (10417, 'SIMOB', 4, '1997-01-16', '1997-02-13', '1997-01-28', 3, 70.2900009, 'Simons bistro', 'Vinbæltet 34', 'Kobenhavn', NULL, '1734', 'Denmark');
 INSERT INTO orders VALUES (10418, 'QUICK', 4, '1997-01-17', '1997-02-14', '1997-01-24', 1, 17.5499992, 'QUICK-Stop', 'Taucherstraße 10', 'Cunewalde', NULL, '01307', 'Germany');
@@ -2985,7 +2985,7 @@ INSERT INTO orders VALUES (10596, 'WHITC', 8, '1997-07-11', '1997-08-08', '1997-
 INSERT INTO orders VALUES (10597, 'PICCO', 7, '1997-07-11', '1997-08-08', '1997-07-18', 3, 35.1199989, 'Piccolo und mehr', 'Geislweg 14', 'Salzburg', NULL, '5020', 'Austria');
 INSERT INTO orders VALUES (10598, 'RATTC', 1, '1997-07-14', '1997-08-11', '1997-07-18', 3, 44.4199982, 'Rattlesnake Canyon Grocery', '2817 Milton Dr.', 'Albuquerque', 'NM', '87110', 'USA');
 INSERT INTO orders VALUES (10599, 'BSBEV', 6, '1997-07-15', '1997-08-26', '1997-07-21', 3, 29.9799995, 'B''s Beverages', 'Fauntleroy Circus', 'London', NULL, 'EC2 5NT', 'UK');
-INSERT INTO orders VALUES (10600, 'HUNGC', 4, '1997-07-16', '1997-08-13', '1997-07-21', 1, 45.1300011, 'Hungry Coyote Import Store', 'City Center Plaza 516 Main St.', 'Elgin', 'OR', '97827', 'USA');
+INSERT INTO orders VALUES (10600, 'HUNGC', 4, '1997-07-16', '1997-08-13', '1997-07-21', 1, 45.1300011, 'Hungry Coyote Import Store', 'city Center Plaza 516 Main St.', 'Elgin', 'OR', '97827', 'USA');
 INSERT INTO orders VALUES (10601, 'HILAA', 7, '1997-07-16', '1997-08-27', '1997-07-22', 1, 58.2999992, 'HILARION-Abastos', 'Carrera 22 con Ave. Carlos Soublette #8-35', 'San Cristóbal', 'Táchira', '5022', 'Venezuela');
 INSERT INTO orders VALUES (10602, 'VAFFE', 8, '1997-07-17', '1997-08-14', '1997-07-22', 2, 2.92000008, 'Vaffeljernet', 'Smagsloget 45', 'Århus', NULL, '8200', 'Denmark');
 INSERT INTO orders VALUES (10603, 'SAVEA', 8, '1997-07-18', '1997-08-15', '1997-08-08', 2, 48.7700005, 'Save-a-lot Markets', '187 Suffolk Ln.', 'Boise', 'ID', '83720', 'USA');
@@ -3045,7 +3045,7 @@ INSERT INTO orders VALUES (10656, 'GREAL', 6, '1997-09-04', '1997-10-02', '1997-
 INSERT INTO orders VALUES (10657, 'SAVEA', 2, '1997-09-04', '1997-10-02', '1997-09-15', 2, 352.690002, 'Save-a-lot Markets', '187 Suffolk Ln.', 'Boise', 'ID', '83720', 'USA');
 INSERT INTO orders VALUES (10658, 'QUICK', 4, '1997-09-05', '1997-10-03', '1997-09-08', 1, 364.149994, 'QUICK-Stop', 'Taucherstraße 10', 'Cunewalde', NULL, '01307', 'Germany');
 INSERT INTO orders VALUES (10659, 'QUEEN', 7, '1997-09-05', '1997-10-03', '1997-09-10', 2, 105.809998, 'Queen Cozinha', 'Alameda dos Canàrios, 891', 'Sao Paulo', 'SP', '05487-020', 'Brazil');
-INSERT INTO orders VALUES (10660, 'HUNGC', 8, '1997-09-08', '1997-10-06', '1997-10-15', 1, 111.290001, 'Hungry Coyote Import Store', 'City Center Plaza 516 Main St.', 'Elgin', 'OR', '97827', 'USA');
+INSERT INTO orders VALUES (10660, 'HUNGC', 8, '1997-09-08', '1997-10-06', '1997-10-15', 1, 111.290001, 'Hungry Coyote Import Store', 'city Center Plaza 516 Main St.', 'Elgin', 'OR', '97827', 'USA');
 INSERT INTO orders VALUES (10661, 'HUNGO', 7, '1997-09-09', '1997-10-07', '1997-09-15', 3, 17.5499992, 'Hungry Owl All-Night Grocers', '8 Johnstown Road', 'Cork', 'Co. Cork', NULL, 'Ireland');
 INSERT INTO orders VALUES (10662, 'LONEP', 3, '1997-09-09', '1997-10-07', '1997-09-18', 2, 1.27999997, 'Lonesome Pine Restaurant', '89 Chiaroscuro Rd.', 'Portland', 'OR', '97219', 'USA');
 INSERT INTO orders VALUES (10663, 'BONAP', 2, '1997-09-10', '1997-09-24', '1997-10-03', 2, 113.150002, 'Bon app''', '12, rue des Bouchers', 'Marseille', NULL, '13008', 'France');
@@ -3738,7 +3738,7 @@ INSERT INTO usstates VALUES (51, 'Wyoming', 'WY', 'west');
 --
 
 ALTER TABLE ONLY categories
-    ADD CONSTRAINT pk_categories PRIMARY KEY ("CategoryID");
+    ADD CONSTRAINT pk_categories PRIMARY KEY ("categoryid");
 
 
 --
@@ -3746,7 +3746,7 @@ ALTER TABLE ONLY categories
 --
 
 ALTER TABLE ONLY customercustomerdemo
-    ADD CONSTRAINT pk_customercustomerdemo PRIMARY KEY ("CustomerID", "CustomerTypeID");
+    ADD CONSTRAINT pk_customercustomerdemo PRIMARY KEY ("customerid", "customertypeid");
 
 
 --
@@ -3754,7 +3754,7 @@ ALTER TABLE ONLY customercustomerdemo
 --
 
 ALTER TABLE ONLY customerdemographics
-    ADD CONSTRAINT pk_customerdemographics PRIMARY KEY ("CustomerTypeID");
+    ADD CONSTRAINT pk_customerdemographics PRIMARY KEY ("customertypeid");
 
 
 --
@@ -3762,7 +3762,7 @@ ALTER TABLE ONLY customerdemographics
 --
 
 ALTER TABLE ONLY customers
-    ADD CONSTRAINT pk_customers PRIMARY KEY ("CustomerID");
+    ADD CONSTRAINT pk_customers PRIMARY KEY ("customerid");
 
 
 --
@@ -3770,7 +3770,7 @@ ALTER TABLE ONLY customers
 --
 
 ALTER TABLE ONLY employees
-    ADD CONSTRAINT pk_employees PRIMARY KEY ("EmployeeID");
+    ADD CONSTRAINT pk_employees PRIMARY KEY ("employeeid");
 
 
 --
@@ -3778,7 +3778,7 @@ ALTER TABLE ONLY employees
 --
 
 ALTER TABLE ONLY employeeterritories
-    ADD CONSTRAINT pk_employeeterritories PRIMARY KEY ("EmployeeID", "TerritoryID");
+    ADD CONSTRAINT pk_employeeterritories PRIMARY KEY ("employeeid", "territoryid");
 
 
 --
@@ -3786,7 +3786,7 @@ ALTER TABLE ONLY employeeterritories
 --
 
 ALTER TABLE ONLY order_details
-    ADD CONSTRAINT pk_order_details PRIMARY KEY ("OrderID", "ProductID");
+    ADD CONSTRAINT pk_order_details PRIMARY KEY ("orderid", "productid");
 
 
 --
@@ -3794,7 +3794,7 @@ ALTER TABLE ONLY order_details
 --
 
 ALTER TABLE ONLY orders
-    ADD CONSTRAINT pk_orders PRIMARY KEY ("OrderID");
+    ADD CONSTRAINT pk_orders PRIMARY KEY ("orderid");
 
 
 --
@@ -3802,7 +3802,7 @@ ALTER TABLE ONLY orders
 --
 
 ALTER TABLE ONLY products
-    ADD CONSTRAINT pk_products PRIMARY KEY ("ProductID");
+    ADD CONSTRAINT pk_products PRIMARY KEY ("productid");
 
 
 --
@@ -3810,7 +3810,7 @@ ALTER TABLE ONLY products
 --
 
 ALTER TABLE ONLY region
-    ADD CONSTRAINT pk_region PRIMARY KEY ("RegionID");
+    ADD CONSTRAINT pk_region PRIMARY KEY ("regionid");
 
 
 --
@@ -3818,7 +3818,7 @@ ALTER TABLE ONLY region
 --
 
 ALTER TABLE ONLY shippers
-    ADD CONSTRAINT pk_shippers PRIMARY KEY ("ShipperID");
+    ADD CONSTRAINT pk_shippers PRIMARY KEY ("shipperid");
 
 
 --
@@ -3826,7 +3826,7 @@ ALTER TABLE ONLY shippers
 --
 
 ALTER TABLE ONLY shippers_tmp
-    ADD CONSTRAINT pk_shippers_tmp PRIMARY KEY ("ShipperID");
+    ADD CONSTRAINT pk_shippers_tmp PRIMARY KEY ("shipperid");
 
 
 --
@@ -3834,7 +3834,7 @@ ALTER TABLE ONLY shippers_tmp
 --
 
 ALTER TABLE ONLY suppliers
-    ADD CONSTRAINT pk_suppliers PRIMARY KEY ("SupplierID");
+    ADD CONSTRAINT pk_suppliers PRIMARY KEY ("supplierid");
 
 
 --
@@ -3842,7 +3842,7 @@ ALTER TABLE ONLY suppliers
 --
 
 ALTER TABLE ONLY territories
-    ADD CONSTRAINT pk_territories PRIMARY KEY ("TerritoryID");
+    ADD CONSTRAINT pk_territories PRIMARY KEY ("territoryid");
 
 
 --
@@ -3858,4 +3858,5 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
+
 
